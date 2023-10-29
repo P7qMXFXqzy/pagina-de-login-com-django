@@ -1,0 +1,35 @@
+{# index.html #}
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    <script type="text/javascript">
+        var dados = "{{ dados|safe }}"; // gets set by jinja
+        console.log(dados)
+        function conectar(){
+            var usuarioInserido = document.getElementById("campoUsuario").value;
+            var usuarioEncontrado = dados.lastIndexOf("\'nomeUsuario\': \'" + usuarioInserido + "\'")
+            if(usuarioEncontrado > (-1)){
+                var senhaInserida = document.getElementById("campoSenha").value;
+                var senhaEncontrada = dados.lastIndexOf("\'senha\': \'" + senhaInserida + "\'")
+                if(senhaEncontrada > (-1)){
+                    alert("conectado!")
+                }
+                else{alert("senha incorreta!")}
+            }
+            else{alert("usuário não encontrado!")}
+        }   
+        // do whatever with the data
+    </script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+</head>
+<body>
+    <input id = "campoUsuario" class = "camposInserirDados" name = "campoUsuario">
+    <input id = "campoSenha" class = "camposInserirDados" name = "campoSenha" type = "password">
+    <button id = "botaoConfirmar" name = "botaoConfirmar" type="button" onclick="conectar()">Fazer login</button>
+    <p id = "textoIndicativoUsuario" class = "textosIndicativos">Usuário:</p>
+    <p id = "textoIndicativoSenha" class = "textosIndicativos">Senha:</p>
+</body>
+</html>
