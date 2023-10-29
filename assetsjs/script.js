@@ -1,3 +1,0 @@
-function print(){
-    location.reload()
-}
